@@ -1,8 +1,11 @@
-import express from 'express';
+import express, {Request, Response} from 'express';
+import { apiRouter } from './routes/apiRouter';
 
 const app = express();
 
-app.get('/', (req, res) => {
+app.use("/api", apiRouter);
+
+app.get('/', (req: Request, res: Response) => {
     res.send('Hello, TypeScript Express!');
   });
 
