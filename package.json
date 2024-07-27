@@ -17,7 +17,12 @@
     "@types/express": "^4.17.21",
     "@types/node": "^20.14.12",
     "express": "^4.19.2",
+    "pg-format": "^1.0.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pg": "^8.12.0"
   }
 }
