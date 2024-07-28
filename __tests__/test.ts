@@ -64,7 +64,7 @@ describe("/api/programs", () => {
     expect(program).toHaveProperty("bestseller", true);
     expect(program).toHaveProperty("startdate", "2024-07-08T00:00:00+0000");
   });
-  test("POST 400: Responds with status and error message if passed article is missing required fields", async () => {
+  test("POST 400: Responds with status and error message if passed program object is missing required fields", async () => {
     const res = await supertest(app).post("/api/programs").send({
       title: "Integrating AI into current infrastructure",
       topic: "innovation-and-digital-transformation",
@@ -95,5 +95,71 @@ describe("/api/programs/:id", () => {
 
     const {message} = res.body;
     expect(message).toBe("Invalid input");
+  });
+
+  test("PUT 200: Updates the program corresponding to the id and responds with the updated program", async () => {
+    const res = await supertest(app)
+      .put("/api/programs/1")
+      .send({
+        title: "Innovation for Business Growth",
+        topic: "change-and-culture",
+        learningFormats: ["virtual", "residential"],
+        bestseller: false,
+        startDate: "2023-05-05T00:00:00+0000",
+      });
+    expect(res.statusCode).toEqual(200);
+
+    const {program} = res.body;
+    expect(program).toHaveProperty("title", "Innovation for Business Growth");
+    expect(program).toHaveProperty("topic", "change-and-culture");
+    expect(program).toHaveProperty("learningformats", [
+      "virtual",
+      "residential",
+    ]);
+    expect(program).toHaveProperty("bestseller", false);
+    expect(program).toHaveProperty("startdate", "2023-05-05T00:00:00+0000");
+  });
+  test("PUT 404: Responds with a status and error message if id is not found in database", async () => {
+    const res = await supertest(app)
+      .put("/api/programs/20")
+      .send({
+        title: "Innovation for Business Growth",
+        topic: "change-and-culture",
+        learningFormats: ["virtual", "residential"],
+        bestseller: false,
+        startDate: "2023-05-05T00:00:00+0000",
+      });
+    expect(res.statusCode).toEqual(404);
+
+    const {message} = res.body;
+    expect(message).toBe("Program not found");
+  });
+  test("PUT 400: Responds with a status and error message if id is invalid", async () => {
+    const res = await supertest(app)
+      .put("/api/programs/invalid_id")
+      .send({
+        title: "Innovation for Business Growth",
+        topic: "change-and-culture",
+        learningFormats: ["virtual", "residential"],
+        bestseller: false,
+        startDate: "2023-05-05T00:00:00+0000",
+      });
+    expect(res.statusCode).toEqual(400);
+
+    const {message} = res.body;
+    expect(message).toBe("Invalid input");
+  });
+  test("PUT 400: Responds with a status and error message if passed program object is missing required fields", async () => {
+    const res = await supertest(app)
+      .put("/api/programs/1")
+      .send({
+        topic: "change-and-culture",
+        learningFormats: ["virtual", "residential"],
+        startDate: "2023-05-05T00:00:00+0000",
+      });
+    expect(res.statusCode).toEqual(400);
+
+    const {message} = res.body;
+    expect(message).toBe("Column cannot be null");
   });
 });
