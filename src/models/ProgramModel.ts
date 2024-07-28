@@ -28,3 +28,22 @@ export const insertProgram = (body: Program) => {
       return rows[0];
     });
 };
+
+export const deleteProgramById = (id: number) => {
+  return db
+    .query(
+      `
+  DELETE FROM programs WHERE id = $1
+  RETURNING *;
+  `,
+      [id]
+    )
+    .then(({rows}) => {
+      if (rows.length === 0) {
+        return Promise.reject({
+          status: 404,
+          msg: "Program not found",
+        });
+      }
+    });
+};

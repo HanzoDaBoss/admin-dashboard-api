@@ -1,5 +1,9 @@
 import {NextFunction, Request, Response} from "express";
-import {insertProgram, selectPrograms} from "../models/ProgramModel";
+import {
+  deleteProgramById,
+  insertProgram,
+  selectPrograms,
+} from "../models/ProgramModel";
 
 export const getPrograms = (
   req: Request,
@@ -22,6 +26,19 @@ export const postProgram = (
   insertProgram(body)
     .then((program) => {
       res.status(201).send({program});
+    })
+    .catch(next);
+};
+
+export const removeProgramById = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const {id} = req.params;
+  deleteProgramById(+id)
+    .then(() => {
+      res.status(204).send();
     })
     .catch(next);
 };
