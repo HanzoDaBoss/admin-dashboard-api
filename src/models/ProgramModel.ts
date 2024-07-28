@@ -8,7 +8,23 @@ export const selectPrograms = () => {
 };
 
 export const insertProgram = (body: Program) => {
-  return db.query(`SELECT * FROM programs;`).then(({rows}) => {
-    return rows;
-  });
+  const insertVals = [
+    body.title,
+    body.topic,
+    body.learningFormats,
+    body.bestseller,
+    body.startDate,
+  ];
+  return db
+    .query(
+      `
+    INSERT INTO programs (title, topic, learningFormats, bestseller, startDate)
+    VALUES ($1, $2, $3, $4, $5)
+    RETURNING *;
+    ;`,
+      insertVals
+    )
+    .then(({rows}) => {
+      return rows;
+    });
 };
