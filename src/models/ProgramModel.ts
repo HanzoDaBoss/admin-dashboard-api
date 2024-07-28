@@ -25,6 +25,6 @@ export const insertProgram = (body: Program) => {
       insertVals
     )
     .then(({rows}) => {
-      return rows;
+      return rows[0];
     });
 };
