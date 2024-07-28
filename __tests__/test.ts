@@ -4,14 +4,7 @@ import db from "../src/db/connection";
 import seed from "../src/db/seeds/seed";
 import {Programs} from "../src/db/data/programs";
 
-import {
-  expect,
-  jest,
-  test,
-  describe,
-  beforeEach,
-  afterAll,
-} from "@jest/globals";
+import {expect, test, describe, beforeEach, afterAll} from "@jest/globals";
 import {Program} from "../src/interfaces/Program";
 
 afterAll(() => {
@@ -23,7 +16,7 @@ beforeEach(() => {
 });
 
 describe("/api/invalid-endpoint", () => {
-  test("TEST 404: responds with status and error message when passed a invalid endpoint", async () => {
+  test("TEST 404: Responds with status and error message when passed an invalid endpoint", async () => {
     const res = await supertest(app).get("/api/invalid");
     expect(res.statusCode).toEqual(404);
 
