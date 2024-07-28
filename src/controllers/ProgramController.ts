@@ -3,6 +3,7 @@ import {
   deleteProgramById,
   insertProgram,
   selectPrograms,
+  updateProgramById,
 } from "../models/ProgramModel";
 
 export const getPrograms = (
@@ -39,6 +40,20 @@ export const removeProgramById = (
   deleteProgramById(+id)
     .then(() => {
       res.status(204).send();
+    })
+    .catch(next);
+};
+
+export const putProgramById = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const {id} = req.params;
+  const {body} = req;
+  updateProgramById(+id, body)
+    .then((program) => {
+      res.status(200).send({program});
     })
     .catch(next);
 };
