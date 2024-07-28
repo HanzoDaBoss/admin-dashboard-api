@@ -1,4 +1,4 @@
-interface Program {
+export interface Program {
   id: number;
   title: string;
   topic: string;
@@ -7,7 +7,7 @@ interface Program {
   startDate: string;
 }
 
-const Programs: Program[] = [
+export const Programs: Program[] = [
   {
     id: 1,
     title: "Agile Innovation for Business Growth",
@@ -97,5 +97,3 @@ const Programs: Program[] = [
     startDate: "2024-01-12T00:00:00+0000",
   },
 ];
-
-export {Program, Programs};

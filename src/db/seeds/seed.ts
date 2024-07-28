@@ -12,9 +12,9 @@ const seed = (programData: Program[]) => {
           id SERIAL PRIMARY KEY,
           title VARCHAR NOT NULL,
           topic VARCHAR NOT NULL,
-          learningFormats VARCHAR NOT NULL,
+          learningFormats VARCHAR[] NOT NULL,
           bestseller BOOLEAN NOT NULL,
-          startDate TIMESTAMP NOT NULL
+          startDate VARCHAR NOT NULL
         );`);
     })
     .then(() => {
@@ -24,7 +24,7 @@ const seed = (programData: Program[]) => {
           ({title, topic, learningFormats, bestseller, startDate}) => [
             title,
             topic,
-            learningFormats,
+            JSON.stringify(learningFormats).replace("[", "{").replace("]", "}"),
             bestseller,
             startDate,
           ]
@@ -34,4 +34,4 @@ const seed = (programData: Program[]) => {
     });
 };
 
-export {seed};
+module.exports = seed;
