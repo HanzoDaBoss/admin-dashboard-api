@@ -64,4 +64,15 @@ describe("/api/programs", () => {
     expect(program).toHaveProperty("bestseller", true);
     expect(program).toHaveProperty("startdate", "2024-07-08T00:00:00+0000");
   });
+  test("POST 400: responds with status and error message if passed article is missing required fields", async () => {
+    const res = await supertest(app).post("/api/programs").send({
+      title: "Integrating AI into current infrastructure",
+      topic: "innovation-and-digital-transformation",
+      startDate: "2024-07-08T00:00:00+0000",
+    });
+    expect(res.statusCode).toEqual(400);
+
+    const {message} = res.body;
+    expect(message).toBe("Column cannot be null");
+  });
 });
