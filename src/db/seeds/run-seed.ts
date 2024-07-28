@@ -1,5 +1,5 @@
-const {Programs} = require("../data/programs.ts");
-const seed = require("./seed.ts");
+import {Programs} from "../data/programs";
+import seed from "./seed";
 import db from "../connection";
 
 const runSeed = () => {

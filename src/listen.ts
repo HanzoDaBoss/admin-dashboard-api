@@ -1,4 +1,4 @@
-const app = require("./index");
+import app from "./index";
 const {PORT = 9090} = process.env;
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}...`));

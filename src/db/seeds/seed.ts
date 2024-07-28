@@ -1,7 +1,6 @@
 import format from "pg-format";
 import {Program} from "../data/programs";
-
-const db = require("../connection");
+import db from "../connection";
 
 const seed = (programData: Program[]) => {
   return db
@@ -34,4 +33,4 @@ const seed = (programData: Program[]) => {
     });
 };
 
-module.exports = seed;
+export default seed;
