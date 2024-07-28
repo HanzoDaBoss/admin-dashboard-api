@@ -1,4 +1,4 @@
-import app from "./index";
+import app from "./server";
 const {PORT = 9090} = process.env;
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}...`));
