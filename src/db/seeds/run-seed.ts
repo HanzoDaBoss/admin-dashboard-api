@@ -1,6 +1,6 @@
 const {Programs} = require("../data/programs.ts");
 const seed = require("./seed.ts");
-const db = require("../connection.ts");
+import db from "../connection";
 
 const runSeed = () => {
   return seed(Programs).then(() => db.end());
