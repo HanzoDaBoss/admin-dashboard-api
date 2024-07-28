@@ -1,7 +1,7 @@
-import { getPrograms } from "../controllers/ProgramController";
+import {getPrograms, postProgram} from "../controllers/ProgramController";
 
 const programRouter = require("express").Router();
 
-programRouter.route("/").get(getPrograms);
+programRouter.route("/").get(getPrograms).post(postProgram);
 
 export {programRouter};

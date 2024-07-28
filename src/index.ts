@@ -3,11 +3,9 @@ import {apiRouter} from "./routes/apiRouter";
 
 const app = express();
 
-app.use("/api", apiRouter);
+app.use(express.json());
 
-// app.get("/", (req: Request, res: Response) => {
-//   res.send("Hello, TypeScript Express!");
-// });
+app.use("/api", apiRouter);
 
 app.get("*", (req: Request, res: Response, next: NextFunction) => {
   res.status(404).send({msg: "Not found"});
