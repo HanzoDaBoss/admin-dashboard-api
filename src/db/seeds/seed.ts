@@ -1,6 +1,6 @@
 import format from "pg-format";
-import {Program} from "../data/programs";
 import db from "../connection";
+import {Program} from "../../Interfaces/IProgram";
 
 const seed = (programData: Program[]) => {
   return db

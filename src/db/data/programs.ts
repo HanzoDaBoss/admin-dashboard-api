@@ -1,11 +1,4 @@
-export interface Program {
-  id: number;
-  title: string;
-  topic: string;
-  learningFormats: string[];
-  bestseller: boolean;
-  startDate: string;
-}
+import {Program} from "../../Interfaces/IProgram";
 
 export const Programs: Program[] = [
   {
