@@ -1,4 +1,4 @@
-import {Program} from "../../Interfaces/IProgram";
+import {Program} from "../../interfaces/Program";
 
 export const Programs: Program[] = [
   {

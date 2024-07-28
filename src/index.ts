@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.use("/api", apiRouter);
 
-app.get("*", (req: Request, res: Response, next: NextFunction) => {
+app.all("*", (req: Request, res: Response, next: NextFunction) => {
   res.status(404).send({msg: "Not found"});
 });
 

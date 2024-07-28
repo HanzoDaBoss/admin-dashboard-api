@@ -1,5 +1,5 @@
 import db from "../db/connection";
-import {Program} from "../Interfaces/IProgram";
+import {Program} from "../interfaces/Program";
 
 export const selectPrograms = () => {
   return db.query(`SELECT * FROM programs;`).then(({rows}) => {
