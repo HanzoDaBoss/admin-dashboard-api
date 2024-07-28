@@ -47,3 +47,32 @@ export const deleteProgramById = (id: number) => {
       }
     });
 };
+
+export const updateProgramById = (id: number, body: Program) => {
+  const insertVals = [
+    body.title,
+    body.topic,
+    body.learningFormats,
+    body.bestseller,
+    body.startDate,
+    id,
+  ];
+  return db
+    .query(
+      `
+    UPDATE programs SET title = $1, topic = $2, learningFormats = $3, bestseller = $4, startDate = $5
+    WHERE id = $6
+    RETURNING *;
+    `,
+      insertVals
+    )
+    .then(({rows}) => {
+      if (rows.length === 0) {
+        return Promise.reject({
+          status: 404,
+          msg: "Program not found",
+        });
+      }
+      return rows[0];
+    });
+};
