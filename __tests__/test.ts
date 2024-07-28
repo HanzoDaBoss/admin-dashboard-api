@@ -22,6 +22,16 @@ beforeEach(() => {
   return seed(Programs);
 });
 
+describe("/api/invalid-endpoint", () => {
+  test("TEST 404: responds with status and error message when passed a invalid endpoint", async () => {
+    const res = await supertest(app).get("/api/invalid");
+    expect(res.statusCode).toEqual(404);
+
+    const {message} = res.body;
+    expect(message).toBe("Not found");
+  });
+});
+
 describe("/api/programs", () => {
   test("GET 200: Return an array of program objects", async () => {
     const res = await supertest(app).get("/api/programs");

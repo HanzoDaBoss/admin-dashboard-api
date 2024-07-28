@@ -13,7 +13,7 @@ app.use(express.json());
 app.use("/api", apiRouter);
 
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
-  res.status(404).send({msg: "Not found"});
+  res.status(404).send({message: "Not found"});
 });
 
 app.use(handleCustomErrors);
