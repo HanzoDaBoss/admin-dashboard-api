@@ -59,4 +59,6 @@ Node.js: `v21.5.0`
 
 TypeScript: `v5.5.4`
 
+Express: `v4.19.2`
+
 PostgreSQL: `v14.12`
