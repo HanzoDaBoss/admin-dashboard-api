@@ -4,7 +4,7 @@ import {
   insertProgram,
   selectPrograms,
   updateProgramById,
-} from "../models/ProgramModel";
+} from "../models/programModel";
 
 export const getPrograms = (
   req: Request,

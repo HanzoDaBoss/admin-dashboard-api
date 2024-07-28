@@ -3,7 +3,7 @@ import {
   postProgram,
   putProgramById,
   removeProgramById,
-} from "../controllers/ProgramController";
+} from "../controllers/programController";
 
 const programRouter = require("express").Router();
 
